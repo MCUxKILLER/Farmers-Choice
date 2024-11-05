@@ -14,3 +14,9 @@ nav a{
     text-transform: uppercase;
 }
 
+#banner-content h1{
+    margin-top: -20px;
+}
+#banner-content p{
+    margin-left: 5px;
+}
