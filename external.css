@@ -1,0 +1,16 @@
+header{
+    background: linear-gradient(rgba(211, 250, 179, 0.3),rgba(193, 238, 158, 0.6)),url(resources/banner1.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 10px 30px;
+    color: white;
+}
+nav{
+    background-color: rgba(47, 90, 34, 0.7);
+    border-radius: 10px;
+}
+nav a{
+    color: rgb(236, 240, 245);
+    text-transform: uppercase;
+}
+
