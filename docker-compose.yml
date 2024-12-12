@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80" # Map localhost:8080 to container's port 80
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: farmerschoice
+      MYSQL_USER: farmer_user
+      MYSQL_PASSWORD: farmer_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "3306:3306" # Map localhost:3306 to container's MySQL port
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_container
+    environment:
+      PMA_HOST: db
+      PMA_USER: farmer_user
+      PMA_PASSWORD: farmer_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8082:80" # Map localhost:8081 to container's phpMyAdmin port
+    depends_on:
+      - db
+
+volumes:
+  db_data:
